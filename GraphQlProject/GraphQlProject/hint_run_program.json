@@ -1,0 +1,108 @@
+//ADD MENU
+mutation AddMenu($menu: MenuInputType) {
+  menuMutation {
+    createMenu(menu: $menu)
+    {
+      id name
+      imageUrl
+    }
+  }
+}
+//MENU QUERY VARIABLE
+{
+  "menu": {
+    "name": "Tea",
+    "imageUrl": "tea.png"
+  }
+}
+// GET MENU
+query {
+  menuQuery {
+    menu {
+      id name
+      imageUrl
+    }
+  }
+}
+
+//ADD SUB-MENU
+mutation AddSubMenu($subMenu: SubMenuInputType) {
+  subMenuMutation {
+    createSubMenu(subMenu: $subMenu)
+    {
+      id name
+      imageUrl
+    }
+  }
+}
+//SUB-MENU QUERY VARIABLE
+{
+  "subMenu": {
+    "menuId": 1,
+    "name": "Black Coffe",
+    "imageUrl": "blackcoffee.png",
+    "description": "Italian Style coffe with and withou sugar",
+    "price": 12
+  }
+}
+// GET SUB-MENU
+query {
+  subMenuQuery {
+    submenus {
+      id name
+      imageUrl description
+      price
+    }
+  }
+}
+//ADD RESERVATION
+mutation AddReservation($reservation: ReservationInputType) {
+  reservationMutation {
+    createReservation(reservation: $reservation)
+    {
+      id name
+      phone totalPeople
+      email date
+      time
+    }
+  }
+}
+//RESERVATION QUERY VARIABLE
+{
+  "reservation": {
+    "name": "Joe Papa",
+    "phone": "07032369246",
+    "totalPeople": 2,
+    "email": "joe.papa@yahoo.com",
+    "date": "11/11/2022",
+    "time": "8pm"
+  }
+}
+// GET RESERVATION
+query {
+  reservationQuery {
+    reservations {
+      id name
+      email totalPeople
+      phone time
+      date
+    }
+  }
+}
+// GET NESTED QUERY
+query{
+  menuQuery{
+    menu {
+      id
+	  name
+      imageUrl
+      submenus{
+        id
+		name
+		imageUrl
+		description
+		price
+      }
+    }
+  }
+}
